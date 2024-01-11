@@ -26,12 +26,12 @@ SELECT DISTINCT inventory_item_id,
 
 CASE 
 WHEN order_items.status LIKE '%Return%'THEN orders.num_of_item * sale_price
-else NULL
+else 0
 end as total_return,
 
 /* Tính toán khoảng cách ngày để xử lý đơn hàng, giao đơn hàng, trả đơn hàng sau khi nhận được hàng */ 
 
-DATE_DIFF(order_items.delivered_at , order_items.created_at, DAY) as delivery_time_in_days,
+DATE_DIFF(order_items.delivered_at , order_items.shipped_at, DAY) as delivery_time_in_days,
 DATE_DIFF(order_items.shipped_at , order_items.created_at, DAY) as process_time_in_days,
 DATE_DIFF(order_items.returned_at , order_items.created_at, DAY) as return_after_received_days
 
