@@ -25,7 +25,8 @@ SELECT DISTINCT inventory_item_id,
 /* Tính toán số tiền bị hoàn đơn */ 
 
 CASE 
-WHEN order_items.status LIKE '%Return%'THEN orders.num_of_item * sale_price
+WHEN order_items.status LIKE '%Return%' OR order_items.status LIKE '%Cancel%'
+THEN orders.num_of_item * sale_price
 else 0
 end as total_return,
 
