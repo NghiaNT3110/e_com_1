@@ -16,7 +16,7 @@ SELECT DISTINCT inventory_item_id,
  /* Chọn các trường thông tin về phân loại sản phẩm và tên sản phẩm */
 
   inventory_items.product_category,inventory_items.product_name, 
-  inventory_items.product_department,
+  inventory_items.product_department, inventory_items.product_brand,
 
 /* Chọn các trường thông tin liên quan đến vòng đời ngày của đơn hàng */ 
 
