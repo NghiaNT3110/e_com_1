@@ -54,8 +54,8 @@ FROM big-query-378507.thelook_ecommerce.order_items /* Bảng chính được d�
 /* Sắp xếp theo ngày tạo đơn hàng giảm dần - Sort by the latest created order date */ 
 ORDER BY order_items.created_at DESC
 )
-/* JOIN bảng chi nhánh từ bảng CTE đã tạo - Join distribution center table to get branch's name and ID */
-SELECT *
+/* JOIN bảng chi nhánh từ bảng CTE đã tạo - Join distribution center table to get the branch's name and ID */
+SELECT o*, d.name
 FROM order_details o 
 JOIN big-query-378507.thelook_ecommerce.distribution_centers d
 ON d.id = o.product_distribution_center_id
