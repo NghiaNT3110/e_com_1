@@ -33,9 +33,9 @@ end as total_return,
 
 /* Tính toán khoảng cách ngày để xử lý đơn hàng, giao đơn hàng, trả đơn hàng sau khi nhận được hàng - Calculate days between time stamp based on status */ 
 
-DATE_DIFF(order_items.delivered_at , order_items.shipped_at, DAY) as delivery_time_in_days, /* Thời gian giao hàng từ khi ra khỏi kho - Delivery time from leaving the warehouse */
-DATE_DIFF(order_items.shipped_at , order_items.created_at, DAY) as process_time_in_days, /* Thời gian xử lý đơn từ khi tạo đến khi ship - Processing time from order creation to shipment */
-DATE_DIFF(order_items.returned_at , order_items.created_at, DAY) as return_after_received_days /* Thời gian trả đơn sau khi nhận hàng - Time to return the order after receiving */
+ABS(DATE_DIFF(order_items.delivered_at , order_items.shipped_at, DAY)) as delivery_time_in_days, /* Thời gian giao hàng từ khi ra khỏi kho - Delivery time from leaving the warehouse */
+ABS(DATE_DIFF(order_items.shipped_at , order_items.created_at, DAY)) as process_time_in_days, /* Thời gian xử lý đơn từ khi tạo đến khi ship - Processing time from order creation to shipment */
+ABS(DATE_DIFF(order_items.returned_at , order_items.created_at, DAY)) as return_after_received_days /* Thời gian trả đơn sau khi nhận hàng - Time to return the order after receiving */
 
 FROM big-query-378507.thelook_ecommerce.order_items /* Bảng chính được dùng - Primary table used for joining with other tables */ 
 
